@@ -1,0 +1,6 @@
+.contentArea {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background-color: #f4f7fa;
+}

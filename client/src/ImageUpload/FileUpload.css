@@ -1,0 +1,226 @@
+/* FileUpload.css */
+.file-upload-container {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.custom-file-input {
+  display: inline-block;
+  width: 100%;
+}
+
+.file-input-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background: white;
+  height: 38px;
+  /* Match standard input height */
+  overflow: hidden;
+}
+
+.file-choose-btn {
+  padding: 20px 40px 12px 40px;
+  background: #f8f9fa;
+  color: #495057;
+  border-right: 1px solid #ced4da;
+  cursor: pointer;
+  font-size: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.file-choose-btn:hover {
+  background: #e9ecef;
+}
+
+.hidden-file-input {
+  display: none;
+}
+
+.file-name-display {
+  flex-grow: 1;
+  padding: 8px 12px;
+  color: #6c757d;
+  /* Gray color for placeholder text */
+  font-size: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-color: #f2f2f2;
+}
+
+/* When no file is selected */
+.file-name-display:empty::before {
+  content: "No file chosen";
+  color: #6c757d;
+}
+
+.file-upload-btn,
+.file-view-btn {
+  padding: 10px 20px;
+  border: none;
+  border-left: 1px solid #ced4da;
+  cursor: pointer;
+  font-size: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.file-upload-btn {
+  background: #f8f9fa;
+  color: #495057;
+}
+
+.file-upload-btn:hover {
+  background: #e9ecef;
+}
+
+.file-upload-btn:disabled {
+  background: #f8f9fa;
+  color: #adb5bd;
+  cursor: not-allowed;
+}
+
+.file-view-btn {
+  background: #f8f9fa;
+  color: #0d6efd;
+  /* Blue color for view button */
+}
+
+.file-view-btn:hover {
+  background: #e9ecef;
+}
+
+.file-error-message {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 5px;
+  display: block;
+}
+
+/* Invalid state */
+.invalid .file-input-group {
+  border-color: #dc3545;
+}
+
+
+@media(max-width:480px){
+  file-choose-btn{
+    background: #dc3545;
+    color: #100ceb;
+  }
+  hidden-file-input{
+    background: green !important;
+  }
+}
+
+
+
+
+
+
+.file-upload-container {
+  width: 100%;
+  margin-bottom: 12px;
+  font-family: Arial, sans-serif;
+}
+
+.custom-file-input {
+  width: 100%;
+}
+
+.file-input-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  overflow: hidden;
+  /* background: white; */
+}
+
+/* Choose button */
+.file-choose-btn {
+  /* padding: 6px 12px; */
+  /* background: #f6f8fa; */
+  border-right: 1px solid #d0d7de;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.file-choose-btn:hover {
+  background: #e9ecef;
+}
+
+/* Hidden file input */
+.hidden-file-input {
+  display: none;
+}
+
+/* File name */
+.file-name-display {
+  flex: 1;
+  padding: 6px 10px;
+  font-size: 14px;
+  color: #555;
+  /* background: #fafafa; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Buttons */
+.file-upload-btn,
+.file-view-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  border-left: 1px solid #d0d7de;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+
+
+
+/* Error */
+.file-error-message {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+
+  .file-choose-btn,
+  .file-upload-btn,
+  .file-view-btn {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+  .file-name-display {
+    font-size: 13px;
+  }
+
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+
+  .file-choose-btn,
+  .file-upload-btn,
+  .file-view-btn {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+
+  .file-name-display {
+    font-size: 12px;
+    padding: 5px 6px;
+  }
+
+}

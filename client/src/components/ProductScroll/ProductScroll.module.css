@@ -1,0 +1,157 @@
+.section {
+  width: 100%;
+  padding: 20px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+}
+
+.seeAllBtn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  background: #000;
+  color: #fff;
+  transition: opacity 0.2s ease;
+  white-space: nowrap;
+}
+
+.seeAllBtn:hover {
+  opacity: 0.9;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+}
+
+/* Product Card inside grid should take full width */
+.productGrid > * {
+  min-width: 0; /* Prevents overflow */
+  width: 100%;
+}
+
+/* Laptop / Small Desktop */
+@media (max-width: 1200px) {
+  .productGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .productGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+  
+  .section {
+    padding: 15px;
+  }
+}
+
+/* Mobile - 2 products per row */
+@media (max-width: 480px) {
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; /* Increased from 5px for better spacing */
+  }
+  
+  .section {
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .seeAllBtn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Extra Small Mobile (very small phones) */
+@media (max-width: 360px) {
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  
+  .section {
+    padding: 8px;
+  }
+
+  .title {
+    font-size: 0.95rem;
+  }
+
+  .seeAllBtn {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+}
+
+/* Make sure ProductCard takes full width of grid cell */
+.productGrid .productCard {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Ensure images and content fit properly */
+.productGrid img {
+  max-width: 100%;
+  height: auto;
+}
+
+.productItem {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.5s ease forwards;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* If ProductCard has fixed width, override it */
+.productGrid > div {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Optional: Add smooth transition for grid changes */
+.productGrid {
+  transition: all 0.3s ease;
+}

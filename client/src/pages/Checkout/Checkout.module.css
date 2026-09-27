@@ -1,0 +1,837 @@
+/* ===== PAGE LAYOUT ===== */
+.checkoutPage {
+  min-height: 100vh;
+  background: #f8fafc;
+  padding: 24px 0 60px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.pageTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 24px 0;
+}
+
+/* ===== CHECKOUT GRID ===== */
+.checkoutGrid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #0f172a;
+}
+
+.cardTitle h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: #0f172a;
+}
+
+.cardTitle svg {
+  color: #2563eb;
+}
+
+.itemCount {
+  font-size: 13px;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+/* ===== LOGIN BANNER ===== */
+.loginBanner {
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  color: #92400e;
+}
+
+.loginBanner svg {
+  flex-shrink: 0;
+  color: #d97706;
+}
+
+.loginBanner span {
+  flex: 1;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.loginBannerBtn {
+  padding: 8px 24px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.loginBannerBtn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* ===== USER INFO CARD ===== */
+.userInfoCard {
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+
+.userInfoRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0;
+}
+
+.userLabel {
+  font-weight: 600;
+  color: #166534;
+  min-width: 60px;
+  font-size: 14px;
+}
+
+.userValue {
+  color: #14532d;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* ===== EDIT BUTTON ===== */
+.editBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.editBtn:hover {
+  background: #dbeafe;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
+}
+
+/* ===== FORM STYLES ===== */
+.addressFields {
+  margin-top: 4px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.formGroup label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.formGroup label svg {
+  color: #64748b;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.formGroup textarea,
+.formGroup input {
+  padding: 10px 14px;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #0f172a;
+  background: #ffffff;
+  transition: all 0.2s;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.formGroup textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.formGroup textarea:focus,
+.formGroup input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.formGroup textarea::placeholder,
+.formGroup input::placeholder {
+  color: #94a3b8;
+}
+
+.disabledInput {
+  background: #f1f5f9 !important;
+  cursor: not-allowed;
+  opacity: 0.8;
+  border-color: #e2e8f0 !important;
+}
+
+.required {
+  color: #dc2626;
+  font-size: 14px;
+  margin-left: 2px;
+}
+
+.optional {
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+/* ===== ADDRESS ACTIONS ===== */
+.addressActions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.addressSaved {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #f0fdf4;
+  border: 1px solid #86efac;
+  border-radius: 10px;
+  color: #166534;
+  font-weight: 500;
+  font-size: 14px;
+  width: 100%;
+}
+
+.addressSaved svg {
+  color: #22c55e;
+}
+
+.cancelBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex: 1;
+}
+
+.cancelBtn:hover:not(:disabled) {
+  background: #e2e8f0;
+  border-color: #cbd5e1;
+}
+
+.cancelBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.saveAddressBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex: 1;
+}
+
+.saveAddressBtn:hover:not(:disabled) {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.saveAddressBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ===== ORDER ITEMS ===== */
+.orderItems {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 16px;
+}
+
+.orderItems::-webkit-scrollbar {
+  width: 4px;
+}
+
+.orderItems::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.orderItems::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.orderItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.orderItem:last-child {
+  border-bottom: none;
+}
+
+.orderItemInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.orderItemImage {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  flex-shrink: 0;
+}
+
+.orderItemName {
+  font-size: 14px;
+  font-weight: 500;
+  color: #0f172a;
+  margin: 0 0 2px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.orderItemQty {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.orderItemPrice {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+/* ===== SUMMARY DETAILS ===== */
+.summaryDetails {
+  padding: 16px 0;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 16px;
+}
+
+.summaryRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 14px;
+  color: #475569;
+}
+
+.summaryRow span:first-child {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.summaryRow span:first-child svg {
+  color: #64748b;
+}
+
+.discountText {
+  color: #22c55e;
+  font-weight: 500;
+}
+
+.totalRow {
+  padding-top: 10px;
+  border-top: 2px solid #e2e8f0;
+  margin-top: 4px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.totalRow span:last-child {
+  color: #2563eb;
+}
+
+/* ===== PAYMENT SECTION ===== */
+.paymentSection {
+  margin: 16px 0;
+}
+
+.paymentTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 12px 0;
+}
+
+.paymentOptions {
+  display: flex;
+  gap: 8px;
+}
+
+.paymentOption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.paymentOption:hover {
+  border-color: #93c5fd;
+  background: #eff6ff;
+}
+
+.paymentOption input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #2563eb;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.paymentOption:has(input:checked) {
+  border-color: #2563eb;
+  background: #eff6ff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+/* ===== PLACE ORDER BUTTON ===== */
+.placeOrderBtn {
+  width: 100%;
+  padding: 14px 20px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 8px;
+}
+
+.placeOrderBtn:hover:not(:disabled) {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+}
+
+.placeOrderBtn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.placeOrderBtn:disabled {
+  background: #94a3b8 !important;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.loginRequiredMsg {
+  text-align: center;
+  margin-top: 12px;
+  color: #dc2626;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+  .checkoutGrid {
+    grid-template-columns: 1fr;
+  }
+
+  /* .summarySection {
+    order: -1;
+  } */
+}
+
+@media (max-width: 768px) {
+  .checkoutPage {
+    padding: 16px 0 100px;
+  }
+
+  .container {
+    padding: 0 12px;
+  }
+
+  .pageTitle {
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .cardHeader {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .cardTitle h2 {
+    font-size: 16px;
+  }
+
+  .loginBanner {
+    flex-wrap: wrap;
+    padding: 12px 16px;
+  }
+
+  .loginBannerBtn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .userInfoCard {
+    padding: 12px;
+  }
+
+  .userInfoRow {
+    flex-wrap: wrap;
+  }
+
+  .addressActions {
+    flex-direction: column;
+  }
+
+  .cancelBtn,
+  .saveAddressBtn {
+    flex: none;
+    width: 100%;
+  }
+
+  .orderItemName {
+    font-size: 13px;
+    max-width: 120px;
+  }
+
+  .orderItemImage {
+    width: 40px;
+    height: 40px;
+  }
+
+  .totalRow {
+    font-size: 16px;
+  }
+
+  .paymentOptions {
+    gap: 6px;
+  }
+
+  .paymentOption {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkoutPage {
+    padding: 12px 0 100px;
+  }
+
+  .container {
+    padding: 0 8px;
+  }
+
+  .card {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .pageTitle {
+    font-size: 18px;
+  }
+
+  .cardTitle h2 {
+    font-size: 14px;
+  }
+
+  .orderItemName {
+    max-width: 80px;
+    font-size: 12px;
+  }
+
+  .orderItemPrice {
+    font-size: 12px;
+  }
+
+  .orderItemImage {
+    width: 36px;
+    height: 36px;
+  }
+
+  .placeOrderBtn {
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+
+  .formGroup textarea,
+  .formGroup input {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .editBtn {
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+}
+
+
+
+
+
+/* ===== ADDRESS CARD ===== */
+.addressCard {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.addressCard:hover {
+  border-color: #93c5fd;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.addressCardHeader {
+  padding: 12px 16px;
+  background: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.addressCardBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #166534;
+  background: #dcfce7;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.addressCardBadge svg {
+  color: #22c55e;
+}
+
+.addressCardBody {
+  padding: 16px;
+}
+
+.addressCardRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0;
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+
+.addressCardIcon {
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.addressCardLabel {
+  font-weight: 600;
+  color: #475569;
+  min-width: 56px;
+  font-size: 13px;
+}
+
+.addressCardValue {
+  color: #0f172a;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.addressCardDivider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 8px 0;
+}
+
+.addressCardDividerText {
+  color: #94a3b8;
+  padding: 0 4px;
+}
+
+/* ===== FULL WIDTH BUTTON ===== */
+.saveAddressBtn.fullWidth {
+  width: 100%;
+}
+
+/* ===== ADDRESS REQUIRED MESSAGE ===== */
+.addressRequiredMsg {
+  text-align: center;
+  margin-top: 12px;
+  color: #d97706;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ===== PLACE ORDER BUTTON STATES ===== */
+.placeOrderBtn:disabled {
+  background: #94a3b8 !important;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ===== RESPONSIVE UPDATES ===== */
+@media (max-width: 768px) {
+  .addressCardRow {
+    font-size: 13px;
+  }
+
+  .addressCardLabel {
+    min-width: 48px;
+    font-size: 12px;
+  }
+
+  .addressCardBody {
+    padding: 12px;
+  }
+
+  .addressCardHeader {
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .addressCardRow {
+    font-size: 12px;
+    gap: 4px;
+  }
+
+  .addressCardLabel {
+    min-width: 40px;
+    font-size: 11px;
+  }
+
+  .addressCardValue {
+    font-size: 12px;
+  }
+
+  .addressCardBody {
+    padding: 10px;
+  }
+
+  .addressCardBadge {
+    font-size: 10px;
+    padding: 2px 10px;
+  }
+}

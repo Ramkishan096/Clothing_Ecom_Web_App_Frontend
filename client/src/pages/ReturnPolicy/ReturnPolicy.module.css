@@ -1,0 +1,331 @@
+.returnPolicyPage {
+  background: #ffffff;
+  min-height: 100vh;
+}
+
+.hero {
+  background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+  padding: 4rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.heroContent svg {
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+.heroContent h1 {
+  color: #000000;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.heroContent p {
+  color: #666666;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+/* Quick Info */
+.quickInfo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.infoCard {
+  background: #fafafa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid #e5e5e5;
+  transition: all 0.3s ease;
+}
+
+.infoCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.infoCard svg {
+  color: #000000;
+  margin-bottom: 0.5rem;
+}
+
+.infoCard h3 {
+  color: #000000;
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.infoCard p {
+  color: #666666;
+  font-size: 0.9rem;
+}
+
+/* Policy Content */
+.policyContent {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.policySection {
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.policySection h2 {
+  color: #000000;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Eligibility */
+.eligibilityGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.eligibilityItem {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: #fafafa;
+  border-radius: 8px;
+}
+
+.eligibilityIcon {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.green {
+  color: #00aa00;
+}
+
+.orange {
+  color: #ff8800;
+}
+
+.eligibilityItem h4 {
+  color: #000000;
+  margin-bottom: 0.25rem;
+}
+
+.eligibilityItem p {
+  color: #666666;
+  font-size: 0.9rem;
+}
+
+/* Process Steps */
+.processSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.stepItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: #fafafa;
+  border-radius: 8px;
+  position: relative;
+}
+
+.stepNumber {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  background: #000000;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.stepIcon {
+  flex-shrink: 0;
+  color: #000000;
+}
+
+.stepContent h3 {
+  color: #000000;
+  margin-bottom: 0.25rem;
+}
+
+.stepContent p {
+  color: #666666;
+  line-height: 1.6;
+}
+
+/* Refund Grid */
+.refundGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.refundItem {
+  padding: 1.5rem;
+  background: #fafafa;
+  border-radius: 8px;
+}
+
+.refundItem h3 {
+  color: #000000;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.refundItem p {
+  color: #666666;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Notes Section */
+.notesSection {
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.notesSection h2 {
+  color: #000000;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.notesList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.noteItem {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.noteIcon {
+  flex-shrink: 0;
+  color: #ff8800;
+  margin-top: 2px;
+}
+
+.noteItem p {
+  color: #666666;
+  line-height: 1.6;
+}
+
+/* Support Section */
+.supportSection {
+  margin-top: 3rem;
+  text-align: center;
+  padding: 3rem;
+  background: #fafafa;
+  border-radius: 12px;
+  border: 1px solid #e5e5e5;
+}
+
+.supportSection h2 {
+  color: #000000;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.supportSection p {
+  color: #666666;
+  margin-bottom: 1.5rem;
+}
+
+.supportButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.supportBtn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  background: #f0f0f0;
+  color: #000000;
+}
+
+.supportBtn:hover {
+  background: #e5e5e5;
+  transform: translateY(-2px);
+}
+
+.supportBtn:first-child {
+  background: #000000;
+  color: #ffffff;
+}
+
+.supportBtn:first-child:hover {
+  background: #333333;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 2rem 1rem;
+  }
+  
+  .heroContent h1 {
+    font-size: 1.8rem;
+  }
+  
+  .container {
+    padding: 2rem 1rem;
+  }
+  
+  .eligibilityGrid,
+  .refundGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .stepItem {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .stepIcon {
+    order: -1;
+  }
+  
+  .supportButtons {
+    flex-direction: column;
+  }
+  
+  .supportBtn {
+    justify-content: center;
+  }
+}

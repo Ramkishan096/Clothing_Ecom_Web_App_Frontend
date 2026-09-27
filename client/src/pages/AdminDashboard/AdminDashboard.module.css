@@ -1,0 +1,12 @@
+.adminDashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f4f7fa;
+}
+
+.mainContainer {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}

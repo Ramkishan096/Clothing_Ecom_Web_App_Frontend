@@ -1,0 +1,421 @@
+/* AdminLogin.module.css */
+.adminLogin {
+  display: flex;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+/* Left Panel */
+.leftPanel {
+  flex: 1;
+  background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+  color: white;
+  padding: 60px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.leftPanel::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.brand {
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.brand .icon {
+  color: #f59e0b;
+  margin-bottom: 12px;
+}
+
+.brand h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 3px;
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand p {
+  color: #94a3b8;
+  font-size: 1.1rem;
+  margin-top: 5px;
+  -webkit-text-fill-color: #94a3b8;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.features div {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.3s;
+}
+
+.features div:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(245, 158, 11, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Right Panel */
+.rightPanel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background: #f8fafc;
+}
+
+.loginCard {
+  background: white;
+  padding: 50px 45px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 420px;
+  transition: all 0.3s;
+}
+
+.loginCard:hover {
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.12);
+}
+
+.header {
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+.header svg {
+  color: #f59e0b;
+  margin-bottom: 10px;
+}
+
+.header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0f0f1a;
+  margin: 0 0 5px 0;
+}
+
+.header p {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.error {
+  background: #fef2f2;
+  color: #dc2626;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  border: 1px solid #fecaca;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f1f5f9;
+  border-radius: 12px;
+  padding: 0 16px;
+  border: 2px solid transparent;
+  transition: all 0.3s;
+}
+
+.inputGroup:focus-within {
+  border-color: #f59e0b;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1);
+}
+
+.inputGroup svg {
+  color: #64748b;
+}
+
+.inputGroup input {
+  flex: 1;
+  padding: 14px 0;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+  outline: none;
+  color: #0f0f1a;
+}
+
+.inputGroup input::placeholder {
+  color: #94a3b8;
+}
+
+.inputGroup input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.hint {
+  text-align: center;
+  margin-top: 4px;
+}
+
+.hint small {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  background: #f1f5f9;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.otpInfo {
+  text-align: center;
+  padding: 10px;
+  background: #f0fdf4;
+  border-radius: 10px;
+  border: 1px solid #bbf7d0;
+}
+
+.otpInfo p {
+  margin: 0;
+  color: #166534;
+  font-size: 0.95rem;
+}
+
+.otpInfo strong {
+  color: #0f0f1a;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 4px;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.backBtn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  padding: 8px 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.backBtn:hover {
+  color: #0f0f1a;
+}
+
+.resendBtn {
+  background: transparent;
+  border: none;
+  color: #f59e0b;
+  padding: 8px 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.resendBtn:hover:not(:disabled) {
+  color: #d97706;
+  text-decoration: underline;
+}
+
+.resendBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .leftPanel {
+    padding: 40px 30px;
+  }
+  
+  .features {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .adminLogin {
+    flex-direction: column;
+  }
+  
+  .leftPanel {
+    padding: 30px 25px;
+    min-height: 250px;
+  }
+  
+  .brand h1 {
+    font-size: 2rem;
+  }
+  
+  .features {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  
+  .features div {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
+  
+  .rightPanel {
+    padding: 20px;
+  }
+  
+  .loginCard {
+    padding: 30px 25px;
+    max-width: 100%;
+  }
+  
+  .header h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .leftPanel {
+    padding: 20px;
+    min-height: 200px;
+  }
+  
+  .brand h1 {
+    font-size: 1.5rem;
+  }
+  
+  .features {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .features div {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+  }
+  
+  .loginCard {
+    padding: 25px 20px;
+  }
+}
+
+
+/* Add to AdminLogin.module.css */
+.resendBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  color: #94a3b8;
+}
+
+
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.featureCard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.featureCard:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(6px);
+}
+
+.icon {
+  font-size: 22px;
+  color: #4f9dff;
+}
+
+.featureCard span {
+  font-size: 16px;
+  font-weight: 600;
+}

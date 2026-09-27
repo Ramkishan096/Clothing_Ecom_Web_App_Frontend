@@ -1,0 +1,1357 @@
+// import { useState, useEffect } from 'react';
+// import styles from "./OrderSection.module.css";
+// import OrderDetailsModal from './OrderDetailsModal';
+// import api from '../../../../../api/axios';
+
+// const OrderSection = () => {
+//   const [orders, setOrders] = useState([]);
+//   const [loading, setLoading] = useState(false);
+//   const [error, setError] = useState(null);
+//   const [selectedOrder, setSelectedOrder] = useState(null);
+//   const [showModal, setShowModal] = useState(false);
+  
+//   const [pagination, setPagination] = useState({
+//     page: 1,
+//     limit: 10,
+//     total: 0,
+//     totalPages: 0
+//   });
+  
+//   // Filter states
+//   const [filters, setFilters] = useState({
+//     payment_method: '',
+//     payment_status: '',
+//     order_status: '',
+//     order_id:""
+//   });
+
+//   // Fetch orders with filters using axios
+//   const fetchOrders = async () => {
+//     setLoading(true);
+//     setError(null);
+    
+//     try {
+//       let queryString = `?page=${pagination.page}&&limit=${pagination.limit}`;
+      
+//       if (filters.payment_method) {
+//         queryString += `&&payment_method=${filters.payment_method}`;
+//       }
+//       if (filters.payment_status) {
+//         queryString += `&&payment_status=${filters.payment_status}`;
+//       }
+//       if (filters.order_status) {
+//         queryString += `&&order_status=${filters.order_status}`;       
+//       }
+//       if(filters.order_status){
+//          queryString+= `&&order_id=${filters.order_id}`;
+//       }
+
+//       const response = await api.get(`order/${queryString}`);
+      
+//       if (response.data.success && response.data.data) {
+//         setOrders(response.data.data.orders || []);
+//         setPagination({
+//           ...pagination,
+//           total: response.data.data.total || 0,
+//           totalPages: response.data.data.totalPages || 0
+//         });
+//       } else {
+//         throw new Error('Invalid response structure');
+//       }
+//     } catch (err) {
+//       setError(err.response?.data?.message || err.message || 'Failed to fetch orders');
+//       console.error('Error fetching orders:', err);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   // Fetch orders when filters or page changes
+//   useEffect(() => {
+//     fetchOrders();
+//   }, [filters, pagination.page]);
+
+//   // Handle filter changes
+//   const handleFilterChange = (filterType, value) => {
+//     setFilters(prev => ({
+//       ...prev,
+//       [filterType]: value
+//     }));
+//     setPagination(prev => ({
+//       ...prev,
+//       page: 1
+//     }));
+//   };
+
+//   // Clear all filters
+//   const clearFilters = () => {
+//     setFilters({
+//       payment_method: '',
+//       payment_status: '',
+//       order_status: ''
+//     });
+//     setPagination(prev => ({
+//       ...prev,
+//       page: 1
+//     }));
+//   };
+
+//   // Handle page change
+//   const handlePageChange = (newPage) => {
+//     if (newPage >= 1 && newPage <= pagination.totalPages) {
+//       setPagination(prev => ({
+//         ...prev,
+//         page: newPage
+//       }));
+//     }
+//   };
+
+//   // Format date
+//   const formatDate = (dateString) => {
+//     if (!dateString) return 'N/A';
+//     return new Date(dateString).toLocaleDateString('en-US', {
+//       year: 'numeric',
+//       month: 'short',
+//       day: 'numeric',
+//       hour: '2-digit',
+//       minute: '2-digit'
+//     });
+//   };
+
+//   // Get status badge color
+//   const getStatusBadge = (status, type) => {
+//     const statusColors = {
+//       payment: {
+//         'Pending': '#ff9800',
+//         'Paid': '#4caf50',
+//         'Failed': '#f44336',
+//         'Refunded': '#9e9e9e'
+//       },
+//       order: {
+//         'Placed': '#2196f3',
+//         'Processing': '#ff9800',
+//         'Shipped': '#9c27b0',
+//         'Delivered': '#4caf50',
+//         'Cancelled': '#f44336'
+//       }
+//     };
+
+//     const colors = type === 'payment' ? statusColors.payment : statusColors.order;
+//     return colors[status] || '#757575';
+//   };
+
+//   // Get customer name
+//   const getCustomerName = (order) => {
+//     if (order.shippingAddress) {
+//       const { first_name, last_name } = order.shippingAddress;
+//       return `${first_name || ''} ${last_name || ''}`.trim() || 'Guest';
+//     }
+//     return 'Guest';
+//   };
+
+//   // Get customer phone
+//   const getCustomerPhone = (order) => {
+//     if (order.shippingAddress && order.shippingAddress.phone) {
+//       return order.shippingAddress.phone;
+//     }
+//     return order.guest_mobile_no || 'N/A';
+//   };
+
+//   // View Order Details
+//   const handleViewOrder = (order) => {
+//     setSelectedOrder(order);
+//     setShowModal(true);
+//   };
+
+//   // Close Modal
+//   const handleCloseModal = () => {
+//     setShowModal(false);
+//     setSelectedOrder(null);
+//   };
+
+//   return (
+//     <div className={styles.orderSection}>
+//       <div className={styles.header}>
+//         <h2>Order Management</h2>
+//         <div className={styles.stats}>
+//           <span>Total Orders: {pagination.total}</span>
+//         </div>
+//       </div>
+
+//       {/* Filter Section */}
+//       <div className={styles.filters}>
+//         {/* <div className={styles.filterGroup}>
+//           <label>Payment Method</label>
+//           <select
+//             value={filters.payment_method}
+//             onChange={(e) => handleFilterChange('payment_method', e.target.value)}
+//           >
+//             <option value="">All Methods</option>
+//             <option value="ONLINE">Online</option>
+//             <option value="COD">Cash on Delivery</option>
+//           </select>
+//         </div> */}
+
+//         <div className={styles.filterGroup}>
+//           <label>Payment Status</label>
+//           <select
+//             value={filters.payment_status}
+//             onChange={(e) => handleFilterChange('payment_status', e.target.value)}
+//           >
+//             <option value="">All Status</option>
+//             <option value="Pending">Pending</option>
+//             <option value="Paid">Paid</option>
+//             {/* <option value="Failed">Failed</option>
+//             <option value="Refunded">Refunded</option> */}
+//           </select>
+//         </div>
+
+//         <div className={styles.filterGroup}>
+//           <label>Order Status</label>
+//           <select
+//             value={filters.order_status}
+//             onChange={(e) => handleFilterChange('order_status', e.target.value)}
+//           >
+//             <option value="">All Status</option>
+//             <option value="Placed">Placed</option>
+//             <option value="Processing">Processing</option>
+//             <option value="Shipped">Shipped</option>
+//             <option value="Delivered">Delivered</option>
+//             <option value="Cancelled">Cancelled</option>
+//           </select>
+//         </div>
+
+//         <button className={styles.clearBtn} onClick={clearFilters}>
+//           Clear Filters
+//         </button>
+//       </div>
+
+//       {/* Error Message */}
+//       {error && (
+//         <div className={styles.error}>
+//           Error: {error}
+//         </div>
+//       )}
+
+//       {/* Loading State */}
+//       {loading && (
+//         <div className={styles.loading}>
+//           <div className={styles.spinner}></div>
+//           <p>Loading orders...</p>
+//         </div>
+//       )}
+
+//       {/* Orders Table */}
+//       {!loading && !error && (
+//         <>
+//           <div className={styles.tableContainer}>
+//             <table className={styles.orderTable}>
+//               <thead>
+//                 <tr>
+//                   <th>Order ID</th>
+//                   {/* <th>Customer Name</th> */}
+//                   {/* <th>Mobile</th> */}
+//                   <th>Items</th>
+//                   <th>Total Amount</th>
+//                   <th>Payment Status</th>
+//                   <th>Order Status</th>
+//                   <th>Order Date</th>
+//                   <th>Action</th>
+//                 </tr>
+//               </thead>
+//               <tbody>
+//                 {orders.length === 0 ? (
+//                   <tr>
+//                     <td colSpan="9" className={styles.noOrders}>
+//                       No orders found
+//                     </td>
+//                   </tr>
+//                 ) : (
+//                   orders.map((order) => (
+//                     <tr key={order._id}>
+//                       <td>
+//                         <span className={styles.orderId}>{order.order_id || order._id?.slice(-6)}</span>
+//                       </td>
+//                       {/* <td>
+//                         <div className={styles.customerInfo}>
+//                           <strong>{getCustomerName(order)}</strong>
+//                         </div>
+//                       </td> */}
+//                       {/* <td>{getCustomerPhone(order)}</td> */}
+//                       <td>
+//                         <div className={styles.itemsInfo}>
+//                           <span>{order.items?.length || 0} items</span>
+//                         </div>
+//                       </td>
+//                       <td>
+//                         <div className={styles.amountInfo}>
+//                           <strong>₹{order.final_payable_amount?.toFixed(2) || '0.00'}</strong>
+//                         </div>
+//                       </td>
+//                       <td>
+//                         <span 
+//                           className={styles.statusBadge}
+//                           style={{ 
+//                             backgroundColor: getStatusBadge(order.payment_status, 'payment'),
+//                             color: '#fff'
+//                           }}
+//                         >
+//                           {order.payment_status || 'N/A'}
+//                         </span>
+//                       </td>
+//                       <td>
+//                         <span 
+//                           className={styles.statusBadge}
+//                           style={{ 
+//                             backgroundColor: getStatusBadge(order.order_status, 'order'),
+//                             color: '#fff'
+//                           }}
+//                         >
+//                           {order.order_status || 'N/A'}
+//                         </span>
+//                       </td>
+//                       <td>{formatDate(order.createdAt)}</td>
+//                       <td>
+//                         <button 
+//                           className={styles.viewBtn}
+//                           onClick={() => handleViewOrder(order)}
+//                         >
+//                           View Order
+//                         </button>
+//                       </td>
+//                     </tr>
+//                   ))
+//                 )}
+//               </tbody>
+//             </table>
+//           </div>
+
+//           {/* Pagination */}
+//           {pagination.totalPages > 1 && (
+//             <div className={styles.pagination}>
+//               <button
+//                 onClick={() => handlePageChange(pagination.page - 1)}
+//                 disabled={pagination.page === 1}
+//                 className={styles.pageBtn}
+//               >
+//                 Previous
+//               </button>
+              
+//               <span className={styles.pageInfo}>
+//                 Page {pagination.page} of {pagination.totalPages}
+//               </span>
+              
+//               <button
+//                 onClick={() => handlePageChange(pagination.page + 1)}
+//                 disabled={pagination.page === pagination.totalPages}
+//                 className={styles.pageBtn}
+//               >
+//                 Next
+//               </button>
+//             </div>
+//           )}
+//         </>
+//       )}
+
+//       {/* View Order Modal */}
+//       {showModal && selectedOrder && (
+//         <OrderDetailsModal 
+//           order={selectedOrder} 
+//           onClose={handleCloseModal}
+//           getStatusBadge={getStatusBadge}
+//           formatDate={formatDate}
+//         />
+//       )}
+//     </div>
+//   );
+// };
+
+// export default OrderSection;
+
+
+
+
+
+
+
+
+
+
+import { useState, useEffect, useRef } from 'react';
+import styles from "./OrderSection.module.css";
+import OrderDetailsModal from './OrderDetailsModal';
+import api from '../../../../../api/axios';
+import { FaSearch, FaTimes, FaSync } from 'react-icons/fa';
+
+const OrderSection = () => {
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [searchOrderId, setSearchOrderId] = useState('');
+  const searchInputRef = useRef(null);
+  
+  const [pagination, setPagination] = useState({
+    page: 1,
+    limit: 10,
+    total: 0,
+    totalPages: 0
+  });
+  
+  // Filter states
+  const [filters, setFilters] = useState({
+    payment_method: '',
+    payment_status: '',
+    order_status: '',
+    order_id: ''
+  });
+
+  // Fetch orders with filters using axios
+  const fetchOrders = async () => {
+    setLoading(true);
+    setError(null);
+    
+    try {
+      let queryString = `?page=${pagination.page}&limit=${pagination.limit}`;
+      
+      if (filters.payment_method) {
+        queryString += `&payment_method=${filters.payment_method}`;
+      }
+      if (filters.payment_status) {
+        queryString += `&payment_status=${filters.payment_status}`;
+      }
+      if (filters.order_status) {
+        queryString += `&order_status=${filters.order_status}`;       
+      }
+      if (filters.order_id) {
+        queryString += `&order_id=${filters.order_id}`;
+      }
+
+      const response = await api.get(`order/${queryString}`);
+      
+      if (response.data.success && response.data.data) {
+        setOrders(response.data.data.orders || []);
+        setPagination({
+          ...pagination,
+          total: response.data.data.total || 0,
+          totalPages: response.data.data.totalPages || 0
+        });
+      } else {
+        throw new Error('Invalid response structure');
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || err.message || 'Failed to fetch orders');
+      console.error('Error fetching orders:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Fetch orders when filters or page changes
+  useEffect(() => {
+    fetchOrders();
+  }, [filters, pagination.page]);
+
+  // Handle filter changes
+  const handleFilterChange = (filterType, value) => {
+    setFilters(prev => ({
+      ...prev,
+      [filterType]: value
+    }));
+    setPagination(prev => ({
+      ...prev,
+      page: 1
+    }));
+  };
+
+  // Clear all filters
+  const clearFilters = () => {
+    setFilters({
+      payment_method: '',
+      payment_status: '',
+      order_status: '',
+      order_id: ''
+    });
+    setSearchOrderId('');
+    setPagination(prev => ({
+      ...prev,
+      page: 1
+    }));
+  };
+
+  // Handle search by Order ID
+  const handleSearchOrder = () => {
+    if (searchOrderId.trim()) {
+      setFilters(prev => ({
+        ...prev,
+        order_id: searchOrderId.trim()
+      }));
+      setPagination(prev => ({
+        ...prev,
+        page: 1
+      }));
+    }
+  };
+
+  // Handle Enter key press for search
+  const handleSearchKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleSearchOrder();
+    }
+  };
+
+  // Clear search
+  const clearSearch = () => {
+    setSearchOrderId('');
+    setFilters(prev => ({
+      ...prev,
+      order_id: ''
+    }));
+    setPagination(prev => ({
+      ...prev,
+      page: 1
+    }));
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  };
+
+  // Handle page change
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= pagination.totalPages) {
+      setPagination(prev => ({
+        ...prev,
+        page: newPage
+      }));
+    }
+  };
+
+  // Format date
+  const formatDate = (dateString) => {
+    if (!dateString) return 'N/A';
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
+  // Get status badge color
+  const getStatusBadge = (status, type) => {
+    const statusColors = {
+      payment: {
+        'Pending': '#ff9800',
+        'Paid': '#4caf50',
+        'Failed': '#f44336',
+        'Refunded': '#9e9e9e'
+      },
+      order: {
+        'Placed': '#2196f3',
+        'Processing': '#ff9800',
+        'Shipped': '#9c27b0',
+        'Delivered': '#4caf50',
+        'Cancelled': '#f44336'
+      }
+    };
+
+    const colors = type === 'payment' ? statusColors.payment : statusColors.order;
+    return colors[status] || '#757575';
+  };
+
+  // View Order Details
+  const handleViewOrder = (order) => {
+    setSelectedOrder(order);
+    setShowModal(true);
+  };
+
+  // Close Modal
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedOrder(null);
+  };
+
+  return (
+    <div className={styles.orderSection}>
+      <div className={styles.header}>
+        <div className={styles.headerLeft}>
+          <h2>Order Management</h2>
+          <div className={styles.stats}>
+            <span>Total Orders: {pagination.total}</span>
+          </div>
+        </div>
+        <button 
+          className={styles.refreshBtn} 
+          onClick={() => fetchOrders()}
+          disabled={loading}
+        >
+          <FaSync className={loading ? styles.spinning : ''} />
+          Refresh
+        </button>
+      </div>
+
+      {/* Filter Section with Search */}
+      <div className={styles.filtersContainer}>
+        {/* Search by Order ID */}
+        <div className={styles.searchWrapper}>
+          <input
+            ref={searchInputRef}
+            type="text"
+            className={styles.searchInput}
+            placeholder="Search by Order ID..."
+            value={searchOrderId}
+            onChange={(e) => setSearchOrderId(e.target.value)}
+            onKeyPress={handleSearchKeyPress}
+          />
+          {searchOrderId && (
+            <button 
+              className={styles.clearSearchBtn}
+              onClick={clearSearch}
+              type="button"
+            >
+              <FaTimes />
+            </button>
+          )}
+          <button 
+            className={styles.searchBtn}
+            onClick={handleSearchOrder}
+            disabled={!searchOrderId.trim() || loading}
+          >
+            <FaSearch /> Search
+          </button>
+        </div>       
+
+        {/* Filters */}
+        <div className={styles.filters}>
+          <div className={styles.filterGroup}>
+            <label>Payment Status</label>
+            <select
+              value={filters.payment_status}
+              onChange={(e) => handleFilterChange('payment_status', e.target.value)}
+            >
+              <option value="">All Status</option>
+              <option value="Pending">Pending</option>
+              <option value="Paid">Paid</option>
+            </select>
+          </div>
+
+          <div className={styles.filterGroup}>
+            <label>Order Status</label>
+            <select
+              value={filters.order_status}
+              onChange={(e) => handleFilterChange('order_status', e.target.value)}
+            >
+              <option value="">All Status</option>
+              <option value="Placed">Placed</option>
+              <option value="Processing">Processing</option>
+              <option value="Shipped">Shipped</option>
+              <option value="Delivered">Delivered</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+          </div>
+
+          <button className={styles.clearBtn} onClick={clearFilters}>
+            <FaTimes /> Clear Filters
+          </button>
+        </div>
+      </div>
+
+      {/* Error Message */}
+      {error && (
+        <div className={styles.error}>
+          <span>⚠️ {error}</span>
+          <button onClick={() => setError(null)} className={styles.errorClose}>
+            <FaTimes />
+          </button>
+        </div>
+      )}
+
+      {/* Loading State */}
+      {loading && (
+        <div className={styles.loading}>
+          <div className={styles.spinner}></div>
+          <p>Loading orders...</p>
+        </div>
+      )}
+
+      {/* Orders Table */}
+      {!loading && !error && (
+        <>
+          <div className={styles.tableContainer}>
+            <table className={styles.orderTable}>
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Items</th>
+                  <th>Total Amount</th>
+                  <th>Payment Status</th>
+                  <th>Order Status</th>
+                  <th>Order Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {orders.length === 0 ? (
+                  <tr>
+                    <td colSpan="7" className={styles.noOrders}>
+                      {filters.order_id ? (
+                        <div className={styles.noOrderFound}>
+                          <p>❌ No order found with ID: <strong>{filters.order_id}</strong></p>
+                          <p className={styles.hint}>Please check the Order ID and try again</p>
+                          <button 
+                            className={styles.clearSearchBtnInline}
+                            onClick={clearSearch}
+                          >
+                            <FaTimes /> Clear Search
+                          </button>
+                        </div>
+                      ) : (
+                        'No orders found'
+                      )}
+                    </td>
+                  </tr>
+                ) : (
+                  orders.map((order) => (
+                    <tr key={order._id}>
+                      <td>
+                        <span className={styles.orderId}>{order.order_id || order._id?.slice(-6)}</span>
+                        {filters.order_id && order.order_id === filters.order_id && (
+                          <span className={styles.searchMatchBadge}>✓ Found</span>
+                        )}
+                      </td>
+                      <td>
+                        <div className={styles.itemsInfo}>
+                          <span>{order.items?.length || 0} items</span>
+                        </div>
+                      </td>
+                      <td>
+                        <div className={styles.amountInfo}>
+                          <strong>₹{order.final_payable_amount?.toFixed(2) || '0.00'}</strong>
+                        </div>
+                      </td>
+                      <td>
+                        <span 
+                          className={styles.statusBadge}
+                          style={{ 
+                            backgroundColor: getStatusBadge(order.payment_status, 'payment'),
+                            color: '#fff'
+                          }}
+                        >
+                          {order.payment_status || 'N/A'}
+                        </span>
+                      </td>
+                      <td>
+                        <span 
+                          className={styles.statusBadge}
+                          style={{ 
+                            backgroundColor: getStatusBadge(order.order_status, 'order'),
+                            color: '#fff'
+                          }}
+                        >
+                          {order.order_status || 'N/A'}
+                        </span>
+                      </td>
+                      <td>{formatDate(order.createdAt)}</td>
+                      <td>
+                        <button 
+                          className={styles.viewBtn}
+                          onClick={() => handleViewOrder(order)}
+                        >
+                          View
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Pagination */}
+          {pagination.totalPages > 1 && (
+            <div className={styles.pagination}>
+              <button
+                onClick={() => handlePageChange(pagination.page - 1)}
+                disabled={pagination.page === 1}
+                className={styles.pageBtn}
+              >
+                Previous
+              </button>
+              
+              <span className={styles.pageInfo}>
+                Page {pagination.page} of {pagination.totalPages}
+              </span>
+              
+              <button
+                onClick={() => handlePageChange(pagination.page + 1)}
+                disabled={pagination.page === pagination.totalPages}
+                className={styles.pageBtn}
+              >
+                Next
+              </button>
+            </div>
+          )}
+        </>
+      )}
+
+      {/* View Order Modal */}
+      {showModal && selectedOrder && (
+        <OrderDetailsModal 
+          order={selectedOrder} 
+          onClose={handleCloseModal}
+          getStatusBadge={getStatusBadge}
+          formatDate={formatDate}
+        />
+      )}
+    </div>
+  );
+};
+
+export default OrderSection;
+
+
+
+
+
+
+
+
+
+
+/* Main Container */
+.orderSection {
+  padding: 24px;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  background: white;
+  padding: 20px 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header h2 {
+  margin: 0;
+  color: #333;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.stats {
+  color: #666;
+  font-size: 14px;
+  background: #e3f2fd;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: 500;
+  color: #1976d2;
+}
+
+/* Filter Section */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  background: white;
+  padding: 20px 24px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  align-items: flex-end;
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 150px;
+}
+
+.filterGroup label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.filterGroup select {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #333;
+}
+
+.filterGroup select:hover {
+  border-color: #bbb;
+}
+
+.filterGroup select:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.clearBtn {
+  padding: 10px 24px;
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  height: 42px;
+  white-space: nowrap;
+}
+
+.clearBtn:hover {
+  background: #d32f2f;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(244, 67, 54, 0.3);
+}
+
+.clearBtn:active {
+  transform: translateY(0);
+}
+
+/* Error Message */
+.error {
+  background: #ffebee;
+  color: #c62828;
+  padding: 14px 20px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  border-left: 4px solid #c62828;
+  font-weight: 500;
+}
+
+/* Loading State */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #4CAF50;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading p {
+  margin-top: 20px;
+  color: #666;
+  font-size: 16px;
+}
+
+/* Table Container */
+.tableContainer {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+.orderTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  min-width: 1100px;
+}
+
+.orderTable thead {
+  background: #f8f9fa;
+}
+
+.orderTable th {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #555;
+  border-bottom: 2px solid #e9ecef;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.orderTable td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: middle;
+}
+
+.orderTable tbody tr {
+  transition: background 0.2s ease;
+}
+
+.orderTable tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.orderTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Order ID */
+.orderId {
+  font-weight: 600;
+  color: #1976d2;
+  font-size: 13px;
+  background: #e3f2fd;
+  padding: 4px 10px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* Customer Info */
+.customerInfo strong {
+  color: #333;
+  font-size: 14px;
+}
+
+/* Items Info */
+.itemsInfo {
+  font-size: 13px;
+}
+
+.itemsInfo span {
+  font-weight: 500;
+  color: #333;
+}
+
+/* Amount Info */
+.amountInfo strong {
+  color: #2e7d32;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* No Orders */
+.noOrders {
+  text-align: center;
+  padding: 60px !important;
+  color: #999;
+  font-size: 16px;
+}
+
+/* Status Badge */
+.statusBadge {
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* View Button */
+.viewBtn {
+  padding: 6px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: #2196f3;
+  color: white;
+}
+
+.viewBtn:hover {
+  background: #1976d2;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+}
+
+.viewBtn:active {
+  transform: translateY(0);
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 24px;
+  padding: 16px 24px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pageBtn {
+  padding: 8px 24px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.pageBtn:hover:not(:disabled) {
+  background: #f5f5f5;
+  border-color: #bbb;
+  transform: translateY(-1px);
+}
+
+.pageBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.pageInfo {
+  color: #555;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .orderTable {
+    min-width: 1000px;
+  }
+}
+
+@media (max-width: 768px) {
+  .orderSection {
+    padding: 12px;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    padding: 16px;
+  }
+
+  .header h2 {
+    font-size: 20px;
+  }
+
+  .filters {
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .filterGroup {
+    min-width: 100%;
+  }
+
+  .clearBtn {
+    width: 100%;
+    height: 44px;
+  }
+
+  .orderTable {
+    font-size: 12px;
+    min-width: 800px;
+  }
+
+  .orderTable th,
+  .orderTable td {
+    padding: 10px 12px;
+  }
+
+  .orderId {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+
+  .amountInfo strong {
+    font-size: 14px;
+  }
+
+  .viewBtn {
+    padding: 4px 14px;
+    font-size: 11px;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .pageBtn {
+    padding: 6px 16px;
+    font-size: 13px;
+  }
+
+  .stats {
+    font-size: 13px;
+    padding: 6px 16px;
+  }
+
+  .statusBadge {
+    font-size: 10px;
+    padding: 3px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .orderSection {
+    padding: 8px;
+  }
+
+  .header {
+    padding: 12px;
+  }
+
+  .header h2 {
+    font-size: 18px;
+  }
+
+  .filters {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .filterGroup select {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .orderTable {
+    font-size: 11px;
+    min-width: 700px;
+  }
+
+  .orderTable th,
+  .orderTable td {
+    padding: 8px 10px;
+  }
+
+  .orderId {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .amountInfo strong {
+    font-size: 13px;
+  }
+
+  .viewBtn {
+    padding: 3px 12px;
+    font-size: 10px;
+  }
+
+  .pagination {
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .pageBtn {
+    padding: 5px 12px;
+    font-size: 12px;
+  }
+
+  .pageInfo {
+    font-size: 12px;
+  }
+
+  .stats {
+    font-size: 12px;
+    padding: 4px 12px;
+  }
+
+  .statusBadge {
+    font-size: 9px;
+    padding: 2px 8px;
+  }
+}
+
+/* Scrollbar Styling for Table */
+.tableContainer::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.tableContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.tableContainer::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.tableContainer::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Print Styles */
+@media print {
+  .orderSection {
+    background: white;
+    padding: 0;
+  }
+
+  .filters,
+  .clearBtn,
+  .viewBtn,
+  .pagination {
+    display: none !important;
+  }
+
+  .header {
+    box-shadow: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .tableContainer {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  .orderTable thead {
+    background: #f5f5f5 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .statusBadge {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+

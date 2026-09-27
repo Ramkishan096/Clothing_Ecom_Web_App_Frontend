@@ -1,0 +1,272 @@
+/* Header.module.css */
+
+.header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo Styles */
+.logo a {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.1;
+}
+
+.logo h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #000000;
+  margin: 0;
+}
+
+.logo h1 span {
+  color: #6b7280;
+}
+
+.logo p {
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: #9ca3af;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Navigation Styles */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav a {
+  color: #4b5563;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.nav a:hover {
+  color: #111827;
+}
+
+.nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #111827;
+  transition: width 0.2s ease;
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+/* Icons Styles */
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 9999px;
+  color: #4b5563;
+  transition: all 0.2s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconBtn:hover {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+/* Badge Styles */
+.badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background-color: #111827;
+  color: #ffffff;
+  font-size: 0.65rem;
+  font-weight: 600;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+}
+
+/* Mobile Menu Button */
+.menuBtn {
+  display: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .nav {
+    display: none;
+  }
+
+  /* .menuBtn {
+    display: flex;
+  } */
+}
+
+@media (max-width: 768px) {
+  .container {
+    height: 60px;
+    padding: 0 1rem;
+  }
+   .menuBtn {
+    display: block;
+  }
+
+
+  .logo h1 {
+    font-size: 1.25rem;
+  }
+
+  .logo p {
+    font-size: 0.5rem;
+    letter-spacing: 0.2em;
+  }
+
+  .icons {
+    gap: 0.25rem;
+  }
+
+  .iconBtn {
+    padding: 0.4rem;
+  }
+
+  .badge {
+    width: 16px;
+    height: 16px;
+    font-size: 0.55rem;
+    top: 1px;
+    right: 1px;
+  }
+  /* .icons>.cartBtn{
+     display: none;    
+    }
+   .icons>.accountBtn{
+      display: none;
+    } */
+}
+
+@media (max-width: 480px) {
+  .logo p {
+    display: none;
+  }
+
+  .logo h1 {
+    font-size: 1.1rem;
+  }
+
+}
+
+
+
+
+.accountBtn{
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #4b5563;
+  position: relative;
+  transition: color 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cartBtn{
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #4b5563;
+  position: relative;
+  transition: color 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+/* Profile Dropdown Wrapper */
+.dropdownWrapper {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 1000;
+}
+
+/* Existing styles remain the same */
+.accountWrapper {
+  position: relative;
+}
+
+.accountBtn {
+  padding: 4px !important;
+}
+
+.userAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+
+.accountBtn:hover .userAvatar {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
